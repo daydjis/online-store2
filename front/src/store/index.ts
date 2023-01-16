@@ -9,17 +9,27 @@ const BASE_URL = 'https://shop-back-u1bl.onrender.com/api/'
 export default new Vuex.Store({
   state: {
     products: [],
+    user: {
+      login: '',
+      password: '',
+    },
   },
 
   getters: {
     PRODUCT(state) {
       return state.products
     },
+    USER(state) {
+      return state.user
+    },
   },
 
   mutations: {
     SET_PRODUCT_TO_STATE: (state, product) => {
       state.products = product
+    },
+    SET_USER_INFO: (state, newUser) => {
+      state.user = newUser
     },
   },
 
@@ -31,12 +41,24 @@ export default new Vuex.Store({
         })
         commit('SET_PRODUCT_TO_STATE', response.data)
         console.log(response.data)
-
         return response
       } catch (error) {
         console.error(error)
       } finally {
         console.log('Ok')
+      }
+    },
+
+    async POST_USER({ commit }) {
+      try {
+        const responce = await axios.post(
+          'https://shop-back-u1bl.onrender.com/api/login',
+          this.state.user
+        )
+
+        console.log(responce)
+      } catch (error) {
+        console.error(error)
       }
     },
   },
