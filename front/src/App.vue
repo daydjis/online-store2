@@ -1,8 +1,12 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <nav class="header">
+      <router-link to="/">Каталог</router-link> |
+      <router-link to="/about">Корзина</router-link> |
+      <div class="auth-container">
+        <router-link to="/auth/login">вход</router-link> |
+        <router-link to="/auth/register">регистрация</router-link>
+      </div>
     </nav>
     <router-view />
   </div>
@@ -16,6 +20,11 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.header {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 nav {

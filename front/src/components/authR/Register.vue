@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <div class="register-from"></div>
+</template>
 
 <script lang="ts" src="./authR.ts"></script>
 
