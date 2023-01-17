@@ -3,7 +3,7 @@
     <form>
       <div class="form-group">
         <label for="exampleInputEmail1">Логин</label>
-        <input v-model="user.login" class="form-control" />
+        <input v-model="User.login" class="form-control" />
         <small id="emailHelp" class="form-text text-muted"
           >We'll never share your email with anyone else.</small
         >
@@ -11,14 +11,14 @@
 
       <div class="form-group">
         <label for="exampleInputPassword1">Пароль</label>
-        <input v-model="user.password" class="form-control" />
+        <input v-model="User.password" type="password" class="form-control" />
         <small id="passwordHelpBlock" class="form-text text-muted">
           Your password must be 8-20 characters long, contain letters and
           numbers.
         </small>
       </div>
     </form>
-    <button v-on:click="post(user)" class="btn btn-primary">Отправить</button>
+    <button v-on:click="post(User)" class="btn btn-primary">Отправить</button>
   </div>
 </template>
 

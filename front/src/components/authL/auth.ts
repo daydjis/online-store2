@@ -1,14 +1,15 @@
 import Component from 'vue-class-component'
 import Vue from 'vue'
+import UserInfo from './interface'
 
 @Component
 export default class Login extends Vue {
   post(info: object): void {
     this.$store.commit('SET_USER_INFO', info)
-    this.$store.dispatch('POST_USER')
+    this.$store.dispatch('AUTH_LOGIN')
   }
 
-  user: any = {
+  User: UserInfo = {
     login: '',
     password: '',
   }
