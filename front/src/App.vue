@@ -2,13 +2,14 @@
     <div id="app">
         <nav class="header">
             <router-link to="/">Каталог</router-link> | <router-link to="/about">Корзина</router-link> |
-            <div class="auth-container" v-if="!this.$store.getters.AUTH">
+            <div class="auth-container" v-if="checkAuth()">
                 <router-link to="/auth/login">вход</router-link> |
                 <router-link to="/auth/register">регистрация</router-link>
             </div>
+
             <div v-else class="auth-container">
-                <a href="" @click="deleteCookie()">Выйти</a> |
-                <!-- <a href="" class="">{{ this.$store.getters.USER_NICKNAME }}</a> -->
+                <a href="#" @click="this.$store.dispatch('DELETE_COOKIE')">Выйти</a> |
+                <a href="#" class="">{{ this.$store.getters.USER_NICKNAME }}</a>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="32"
@@ -36,8 +37,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Vue } from 'vue-property-decorator';
 export default class HomeView extends Vue {
+    // $store: any;
+
+    mounted() {
+        this.checkAuth();
+    }
+
+    checkAuth() {
+        if (!this.$store.getters.AUTH) {
+            return false;
+        }
+    }
+
     checkTheme() {
         if (!this.$store.getters.DARK_THEME) {
             this.$store.commit('IS_DARK_THEME', true);
@@ -45,17 +58,6 @@ export default class HomeView extends Vue {
         } else {
             this.$store.commit('IS_DARK_THEME', false);
             document.body.style.backgroundColor = 'white';
-        }
-    }
-    deleteCookie() {
-        const cookies = document.cookie.split(';');
-        localStorage.clear();
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i];
-            const eqPos = cookie.indexOf('=');
-            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;';
-            document.cookie = name + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
     }
 }

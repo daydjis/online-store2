@@ -5,8 +5,8 @@ import Vue from 'vue';
 export default class MainWrapper extends Vue {
     mounted() {
         this.$store.dispatch('GET_PRODUCT');
+        this.$store.getters.PRODUCT;
     }
 
     theme: any = this.$store.getters.IS_DARK_THEME;
-    product = this.$store.getters.PRODUCT;
 }

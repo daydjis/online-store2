@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 import router from '@/router';
-import { parseJwt } from '../utils/parser';
+import { deleteCookie, parseJwt } from '../utils/parser';
 
 Vue.use(Vuex);
 
@@ -64,6 +64,9 @@ export default new Vuex.Store({
     },
 
     actions: {
+        DELETE_COOKIE() {
+            deleteCookie();
+        },
         async GET_PRODUCT({ commit }) {
             try {
                 const response = await axios.get(BASE_URL + '/products/', {
@@ -84,13 +87,14 @@ export default new Vuex.Store({
                 commit('ISLOADING', true);
                 await axios.post(BASE_URL + '/login', this.state.user).then(function (response) {
                     console.log(response.data.token);
-                    const newCokkie = parseJwt(response.data.token);
                     document.cookie = `jwt=${response.data.token}`;
                     commit('IS_AUTH', true);
+                    const newCokkie = parseJwt(response.data.token);
+                    localStorage.setItem('login', newCokkie.login);
                     console.log(newCokkie);
 
-                    localStorage.setItem('login', newCokkie);
                     commit('SET_NICKNAME', newCokkie.login);
+                    commit('ISLOADING', false);
                 });
             } catch (error) {
                 console.error(error);
