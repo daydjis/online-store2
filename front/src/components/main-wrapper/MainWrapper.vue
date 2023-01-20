@@ -7,7 +7,7 @@
         <p>{{ item.description }}</p>
         <h1>{{ item.image }}</h1>
         <h4>{{ item.rating }}</h4>
-        <h1>{{ item.price }} руб</h1>
+        <h3>{{ item.price }} руб</h3>
         <button>Купить</button>
       </div>
     </div>

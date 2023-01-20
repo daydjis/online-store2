@@ -1,20 +1,17 @@
 <template>
-  <div class="home">
-    <MainHeader />
-    <MainWrapper />
-  </div>
+    <div class="home">
+        <MainWrapper />
+    </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import MainHeader from '../components/main-header/MainHeader.vue'
-import MainWrapper from '../components/main-wrapper/MainWrapper.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import MainWrapper from '../components/main-wrapper/MainWrapper.vue';
 
 @Component({
-  components: {
-    MainWrapper,
-    MainHeader,
-  },
+    components: {
+        MainWrapper,
+    },
 })
 export default class HomeView extends Vue {}
 </script>
