@@ -7,6 +7,5 @@ export default class MainWrapper extends Vue {
         this.$store.dispatch('GET_PRODUCT');
     }
 
-    theme: any = this.$store.getters.IS_DARK_THEME;
     product = this.$store.getters.PRODUCT;
 }
