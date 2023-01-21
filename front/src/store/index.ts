@@ -64,9 +64,11 @@ export default new Vuex.Store({
     },
 
     actions: {
-        DELETE_COOKIE() {
+        DELETE_COOKIE({ commit }) {
             deleteCookie();
+            commit('IS_AUTH', false);
         },
+
         async GET_PRODUCT({ commit }) {
             try {
                 const response = await axios.get(BASE_URL + '/products/', {
@@ -94,7 +96,6 @@ export default new Vuex.Store({
                     console.log(newCokkie);
 
                     commit('SET_NICKNAME', newCokkie.login);
-                    commit('ISLOADING', false);
                 });
             } catch (error) {
                 console.error(error);
