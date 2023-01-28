@@ -6,10 +6,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Page from './page.vue';
 @Component({
     components: {
-        Page,
+        Page: () => import('./page.vue'),
     },
 })
 export default class HelloWorld extends Vue {}

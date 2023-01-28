@@ -1,8 +1,28 @@
 <template>
     <div>
         <div class="container">
+            <div class="filters">
+                <nav class="navbar navbar-light bg-light">
+                    <form class="form-inline">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
+                        <input
+                            v-model="search"
+                            class="form-control mr-sm-2"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                        />
+                    </form>
+                    <form class="form-inline">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">По цене</button>
+                    </form>
+                    <form class="form-inline">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">По рейтингу</button>
+                    </form>
+                </nav>
+            </div>
             <div class="items">
-                <div class="item" v-for="item in paginationProduct()" :key="item.id">
+                <div class="item" v-for="item in array" :key="item.id">
                     <h5>{{ item.title }}</h5>
                     <div class="card" style="width: 18rem">
                         <div
@@ -41,6 +61,16 @@
 <script lang="ts" src="./main-wrapper.ts"></script>
 
 <style scoped lang="scss">
+.navbar {
+    display: flex;
+    justify-content: space-evenly;
+}
+.form-inline {
+    display: flex;
+}
+.filters {
+    width: 1200px;
+}
 .txt {
     padding: 6px;
     font-size: 12px;
@@ -71,7 +101,7 @@
 .items {
     max-width: 1200px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
 }
 .product-cover {
