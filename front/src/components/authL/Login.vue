@@ -13,13 +13,15 @@
 
                 <div class="form-group">
                     <label for="exampleInputPassword1">Пароль</label>
-                    <input @blur="true" @focusin="true" v-model="User.password" type="password" class="form-control" />
+                    <input v-model="User.password" type="password" class="form-control" />
                     <small id="passwordHelpBlock" class="form-text text-muted">
                         Your password must be 6-30 characters long, contain letters and numbers.
                     </small>
                 </div>
             </form>
-            <button v-if="!this.$store.getters.IS_AUTH" @click="post(User)" class="btn btn-primary">Отправить</button>
+            <button type="submit" v-if="!this.$store.getters.AUTH" @click="post(User)" class="btn btn-primary">
+                Отправить
+            </button>
             <div v-else class="spinner-border" role="status">
                 <span class="sr-only"></span>
             </div>

@@ -1,16 +1,15 @@
 <template>
     <div id="app">
-        <MainHeader />
-        <router-view />
+        <Page />
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import MainHeader from '../src/components/main-header/MainHeader.vue';
+import Page from './page.vue';
 @Component({
     components: {
-        MainHeader,
+        Page,
     },
 })
 export default class HelloWorld extends Vue {}
@@ -22,23 +21,5 @@ export default class HelloWorld extends Vue {}
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-}
-
-.header {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-nav {
-    padding: 30px;
-
-    a {
-        font-weight: bold;
-        color: #2c3e50;
-
-        &.router-link-exact-active {
-            color: #42b983;
-        }
-    }
 }
 </style>

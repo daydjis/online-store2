@@ -1,9 +1,11 @@
-import Component from 'vue-class-component';
-import Vue from 'vue';
+import { ref } from 'vue';
+import { Vue, Component, Watch } from 'vue-property-decorator';
 
 @Component
 export default class MainHeader extends Vue {
     // $store: any;
+
+    IsAuth = false;
 
     clearcookie() {
         this.$store.dispatch('DELETE_COOKIE');
@@ -11,10 +13,18 @@ export default class MainHeader extends Vue {
     }
 
     nickname: string;
+    @Watch('this.$store.getters.AUTH')
+    public checkAuth() {
+        this.$forceUpdate();
+        if (document.cookie) {
+            this.IsAuth = true;
+        } else {
+            this.IsAuth = false;
+        }
+    }
 
     mounted() {
         this.checkAuth();
-
         if (this.$store.getters.USER_NICKNAME) {
             this.nickname = this.$store.getters.USER_NICKNAME;
         } else {
@@ -22,19 +32,8 @@ export default class MainHeader extends Vue {
         }
     }
 
-    checkAuth() {
-        if (document.cookie) {
-            console.log('yes');
-
-            return true;
-        } else {
-            console.log('no');
-
-            return false;
-        }
-    }
-
     checkTheme() {
+        this.checkAuth();
         if (!this.$store.getters.DARK_THEME) {
             this.$store.commit('IS_DARK_THEME', true);
             document.body.style.backgroundColor = 'black';
@@ -42,5 +41,9 @@ export default class MainHeader extends Vue {
             this.$store.commit('IS_DARK_THEME', false);
             document.body.style.backgroundColor = 'white';
         }
+    }
+
+    get auth() {
+        return this.IsAuth;
     }
 }

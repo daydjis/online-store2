@@ -1,6 +1,6 @@
 <template>
-    <div class="register-from">
-        <template>
+    <div>
+        <div class="register-from">
             <div class="login-from">
                 <h1>Регистрация</h1>
                 <form>
@@ -25,14 +25,14 @@
                         </small>
                     </div>
                 </form>
-                <button v-if="!this.$store.getters.IS_AUTH" @click="post(User)" class="btn btn-primary">
+                <button type="submit" v-if="!this.$store.getters.AUTH" @click="post(User)" class="btn btn-primary">
                     Отправить
                 </button>
                 <div v-else class="spinner-border" role="status">
                     <span class="sr-only"></span>
                 </div>
             </div>
-        </template>
+        </div>
     </div>
 </template>
 

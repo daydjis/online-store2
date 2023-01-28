@@ -79,8 +79,6 @@ export default new Vuex.Store({
                 return response;
             } catch (error) {
                 console.error(error);
-            } finally {
-                console.log('Ok');
             }
         },
 
@@ -88,23 +86,22 @@ export default new Vuex.Store({
             try {
                 commit('ISLOADING', true);
                 await axios.post(BASE_URL + '/login', this.state.user).then(function (response) {
-                    console.log(response.data.token);
                     document.cookie = `jwt=${response.data.token}`;
                     commit('IS_AUTH', true);
                     const newCokkie = parseJwt(response.data.token);
                     localStorage.setItem('login', newCokkie.login);
-                    console.log(newCokkie);
-
                     commit('SET_NICKNAME', newCokkie.login);
                 });
             } catch (error) {
                 console.error(error);
                 commit('ISLOADING', false);
             } finally {
-                if (document.cookie) {
-                    router.push({ path: `/` });
-                }
-                commit('ISLOADING', false);
+                setTimeout(() => {
+                    if (document.cookie) {
+                        router.push({ path: `/` });
+                    }
+                    commit('ISLOADING', false);
+                }, 4000);
             }
         },
 
