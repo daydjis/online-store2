@@ -1,14 +1,18 @@
 import Component from 'vue-class-component';
 import Vue from 'vue';
-import { Watch } from 'vue-property-decorator/lib/decorators/Watch';
 
-@Component
+@Component({
+    components: {
+        ModalPopUp: () => import('../main-wrapper/el/ModalPopUp/ModalPopUp.vue'),
+    },
+})
 export default class MainWrapper extends Vue {
     pageNumber = 1;
     productPerPage = 6;
     dropFilters = false;
     search = '';
     arrayOfProdduct = [];
+    isPopUpOpen = false;
 
     mounted() {
         this.$store.dispatch('GET_PRODUCT');
@@ -29,6 +33,16 @@ export default class MainWrapper extends Vue {
         const to = from + this.productPerPage;
 
         return this.$store.getters.PRODUCT.slice(from, to);
+    }
+
+    setProduct(product) {
+        this.$store.dispatch('SET_P', product);
+
+        this.isPopUpOpen = true;
+    }
+
+    closePopUp() {
+        this.isPopUpOpen = false;
     }
 
     get array() {

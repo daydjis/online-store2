@@ -10,6 +10,7 @@ const BASE_URL = 'https://shop-back-u1bl.onrender.com/api';
 
 export default new Vuex.Store({
     state: {
+        currentProduct: '',
         isDarkTheme: false,
         isAuth: false,
         loader: false,
@@ -40,6 +41,9 @@ export default new Vuex.Store({
         USER_NICKNAME(state) {
             return state.userNickname;
         },
+        THIS_PRODUCT(state) {
+            return state.currentProduct;
+        },
     },
 
     mutations: {
@@ -61,9 +65,15 @@ export default new Vuex.Store({
         SET_NICKNAME: (state, login) => {
             state.userNickname = login;
         },
+        SET_PRODUCT: (state, currentProduct) => {
+            state.currentProduct = currentProduct;
+        },
     },
 
     actions: {
+        SET_P({ commit }, PR) {
+            commit('SET_PRODUCT', PR);
+        },
         DELETE_COOKIE({ commit }) {
             deleteCookie();
             commit('IS_AUTH', false);

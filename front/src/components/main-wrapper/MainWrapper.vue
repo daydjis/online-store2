@@ -21,19 +21,18 @@
                     </form>
                 </nav>
             </div>
+            <ModalPopUp v-if="isPopUpOpen">
+                <button type="button" class="btn btn-danger" @click="closePopUp()">close</button>
+            </ModalPopUp>
             <div class="items">
                 <div class="item" v-for="item in array" :key="item.id">
                     <h5>{{ item.title }}</h5>
                     <div class="card" style="width: 18rem">
                         <div
+                            @click="setProduct(item)"
                             class="product-cover"
                             :style="{ backgroundImage: `url(${'data:image/jpeg;base64,' + item.image})` }"
                         ></div>
-                        <div class="main-cart-body">
-                            <p class="txt">
-                                {{ item.description }}
-                            </p>
-                        </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">{{ item.category }}</li>
                             <li class="list-group-item">{{ item.rating }}</li>
@@ -80,7 +79,6 @@
     height: 100px;
     display: flex;
     flex-wrap: nowrap;
-    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
 }
