@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container">
+        <div class="container" id="container">
             <div class="filters">
                 <nav class="navbar navbar-light bg-light">
                     <form class="form-inline">
@@ -21,6 +21,7 @@
                     </form>
                 </nav>
             </div>
+
             <ModalPopUp v-if="isPopUpOpen">
                 <button type="button" class="btn btn-danger" @click="closePopUp()">close</button>
             </ModalPopUp>

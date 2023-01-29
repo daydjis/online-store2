@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="back">
+    <div class="back">
+        <div class="cont">
             <div class="card bg-dark text-white">
                 <img
                     class="imgP"
@@ -9,11 +9,17 @@
                     }"
                 />
                 <div class="card-img-overlay">
-                    <h5 class="card-title">{{ this.$store.getters.THIS_PRODUCT.title }}</h5>
-                    <p class="card-text">
-                        {{ this.$store.getters.THIS_PRODUCT.description }}
-                    </p>
-                    <p class="card-text">{{ this.$store.getters.THIS_PRODUCT.price }}</p>
+                    <strong>
+                        <h4 class="card-title">{{ this.$store.getters.THIS_PRODUCT.title }}</h4></strong
+                    >
+                    <strong>
+                        <p class="card-text">
+                            {{ this.$store.getters.THIS_PRODUCT.description }}
+                        </p>
+                    </strong>
+                    <strong
+                        ><p class="card-text">{{ this.$store.getters.THIS_PRODUCT.price }} руб</p></strong
+                    >
                     <slot> </slot>
                 </div>
             </div>
@@ -25,26 +31,38 @@
 
 <style>
 .back {
-    margin: 0 auto;
+    transition: 1s;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    background: rgba(2, 2, 2, 0.3);
-    z-index: 50;
-    height: 100%;
-    width: 100%;
+    background: rgba(2, 2, 2, 0.2);
+    z-index: 40;
     right: 0;
+    height: 140%;
     bottom: 0;
     left: 0;
     top: 0;
 }
+
+.cont {
+    position: fixed;
+    top: 50px;
+    padding: 16px;
+    z-index: 50;
+}
 .imgP {
+    opacity: 10%;
     height: 100%;
     width: 100%;
 }
 .card {
     height: 500px;
     width: 700px;
+}
+.card-img-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 </style>
