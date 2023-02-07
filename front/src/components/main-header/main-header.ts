@@ -3,8 +3,6 @@ import { Vue, Component, Watch } from 'vue-property-decorator';
 
 @Component
 export default class MainHeader extends Vue {
-    // $store: any;
-
     IsAuth = false;
 
     clearcookie() {
@@ -17,9 +15,11 @@ export default class MainHeader extends Vue {
     public checkAuth() {
         this.$forceUpdate();
         if (document.cookie) {
+            this.$store.commit('IS_AUTH', true);
             this.IsAuth = true;
         } else {
             this.IsAuth = false;
+            this.$store.commit('IS_AUTH', false);
         }
     }
 

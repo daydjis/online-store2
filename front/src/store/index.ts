@@ -12,7 +12,7 @@ export default new Vuex.Store({
     state: {
         currentProduct: '',
         isDarkTheme: false,
-        isAuth: false,
+        isAuth: null,
         loader: false,
         products: [],
         user: {
