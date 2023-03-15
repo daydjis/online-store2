@@ -51,7 +51,12 @@
       "ecmaVersion": 2020
     },
     "rules": {
-      "vue/multi-word-component-names": "off"
+      "vue/multi-word-component-names": "off",
+      "@typescript-eslint/no-inferrable-types": "off",
+      "prefer-const": ["error", {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": true
+    }]
     }
   },
   "browserslist": [
