@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator'
 @Component({
     components: {
         Page: () => import('./page.vue'),
@@ -19,6 +19,6 @@ export default class HelloWorld extends Vue {}
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: #20303f;
 }
 </style>
